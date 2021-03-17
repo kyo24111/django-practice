@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Pushpin:text</h1>
+    <h1 id="myMap" class=""style="position:relative;height: 800px;width: 1400px; float: left;"></h1>
+    <div id="othercontents" >
+        <button id="start">START</button>
+        <button id="delete" style="width:100px; height: 30px;">
+            ピン削除
+        </button>
+        <div id="texts" style="display: flex; flex-direction: column;">
+            <input class="inputbox" id="ans1" type="text" placeholder="①">
+            <input class="inputbox" id="ans2" type="text" placeholder="②">
+            <input class="inputbox" id="ans3" type="text" placeholder="③">
+            <input class="inputbox" id="ans4" type="text" placeholder="④">
+            <input class="inputbox" id="ans5" type="text" placeholder="⑤">
+        </div>
+
+        <button id="send">送信</button>
+        <button id="test">テスト</button>
+        <p id="box"></p>
+    </div>
+<script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AvxKcSNSCKWiOEowtQgiX3knTpGoO62EA7J_KK-6-2IY1o_qSdrfYTdiGIwrbtcA' async defer></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+function GetMap() {
+    // 以下はブラウザーにマップのセンターの位置を決めて表示する関数
+    let map = new Microsoft.Maps.Map('#myMap', {
+        center: new Microsoft.Maps.Location(35.670,139.70),
+        mapTypeId: Microsoft.Maps.MapTypeId.terrain,
+        zoom:2,
+    });
+    //mapの中心座標を取得
+    let center = map.getCenter();
+    //pushpin設定
+    let pin = new Microsoft.Maps.Pushpin(center,{
+            title: 'Microsoft',       //PushPin:title
+            subTitle: 'City Center',  //PushPin:subtitle
+            text: 'G',                //PushPin:text
+            color:"red"
+        });
+        map.entities.push(pin);
+    }
+</script>
+</body>
+</html>
